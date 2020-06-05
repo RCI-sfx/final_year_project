@@ -1,4 +1,14 @@
 '''
+This programme uses a brute force method to predict 
+many inversions/shuffling combinations until the 
+DNA binding arrays match with a continuous section of the target sequence. 
+
+To account for splicing please put your target sequence intersperced by Ns.
+
+The script can only invert the string starting at an odd position and 
+ending at an even position thus the length of inversion events 
+possible were: 2,6,10,14, 18 and 22.  
+
 define an 'action' as a reversal of a substring, starting from index 2*k,
 of length 2+4n, of a string. n and k are integers >= 0
 
@@ -8,20 +18,20 @@ that can 'bind' to a
 find the minimum number of actions required by a source string to 'fit' into a
 destination string
 
-hello
 '''
+#gives use the IUPAC nucleotides found at https://www.bioinformatics.org/sms/iupac.html to enter modules. 
 
 fitDict = {
     'G': {'G'},
     'C': {'C'},
     'A': {'A'},
     'T': {'T'},
-    'P': {'A', 'C'},
+    'M': {'A', 'C'},
     'N': {'A', 'T', 'G', 'C'},
-    'E': {'A', 'T'},
-    'Y': {'G', 'A'},
-    'Z': {'C', 'T'},
-    'F': {'G', 'T'}
+    'W': {'A', 'T'},
+    'R': {'G', 'A'},
+    'Y': {'C', 'T'},
+    'k': {'G', 'T'}
 }
 
 # returns all the strings possible and current flips made in form [i, j] where flip on index i,j
